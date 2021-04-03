@@ -40,16 +40,30 @@ function addExpenseToTotal(){
   // display the heading element on the screen by setting element to totalExpense
     showExpense.textContent = sometext;
 
-    const allExpenseHTML = allExpense.map(expense => {
-      return `<div>${expense.amount} :: ${expense.desc} </div>`
-    });
+    const allExpenseHTML = allExpense.map(expense => createListItem(expense));
 
-    console.log(allExpenseHTML);
-
-    const joinedAllExpenseHTML = allExpenseHTML.join("");
+       const joinedAllExpenseHTML = allExpenseHTML.join("");
 
     expenseTableEl.innerHTML = joinedAllExpenseHTML;
 }
  // add event listener
-element.addEventListener("click", addExpenseToTotal, false)
+element.addEventListener("click", addExpenseToTotal, false);
+
+// view layer
+function createListItem({desc, amount}){
+  return `
+      <div id="container itemList">
+      <div class="list">
+        ${desc}
+        <span class="date">April 1, 2021</span> 
+      
+      </div>
+      <div class="ps-3">
+        ${amount}
+      </div>
+      <button type="text" class="btn">
+          <i class="fas fa-trash"></i>
+      </button>
+    </div>`
+}
 
